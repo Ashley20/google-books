@@ -1,0 +1,60 @@
+<%- include('partials/header') %>
+
+<!-- Page content -->
+<div id="page-content-wrapper">
+    <div class="content-header">
+        <h1>
+            <a id="menu-toggle" href="#" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i></a>
+        </h1>
+    </div>
+    <!-- Keep all page content within the page-content inset div! -->
+    <div class="page-content inset">
+      <div class="container">
+        <% if(locals.book) { %>
+          <div class="row">
+            <div class="col">
+                <% if(book.volumeInfo.imageLinks) { %>
+                    <img class="rounded" src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="Card image cap">
+                <% } %>
+            </div>
+
+            <div class="col">
+                <% if(book.volumeInfo.title) { %>
+                    <p class="font-weight-bold"> <%= book.volumeInfo.title %>
+                    <% if(book.volumeInfo.subtitle) { %>
+                        <p class="font-weight-light"> <%= book.volumeInfo.subtitle %> </p>
+                    <% } %>
+                    </p>
+                <% } %>
+                <br><br>
+
+                <% if(book.volumeInfo.authors) { %>
+                    <p class="font-weight-light"> by <%= book.volumeInfo.authors[0] %> </p
+                <% } %>
+
+                <% if(book.volumeInfo.publisher && book.volumeInfo.publishedDate) { %>
+                    <p class="font-weight-light"> published by <%= book.volumeInfo.publisher %> in <%= book.volumeInfo.publishedDate %> </p
+                <% } %>
+
+
+                <% if(book.volumeInfo.pageCount) { %>
+                    <p class="font-weight-normal"> <%= book.volumeInfo.pageCount%> pages </p>
+                <% } %>
+            
+                <% if(book.volumeInfo.description) { %>
+                    <p class="font-italic"> <%= book.volumeInfo.description%> </p> 
+                <% } %>
+
+            </div> 
+          </div>
+          <% if(book.volumeInfo.previewLink) { %>
+            <div class="divider"></div>
+            <a href="<%= book.volumeInfo.previewLink%>"> Daha fazla bilgi için tıklayın.. </a>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+</div>
+
+
+<%- include('partials/footer') %>
